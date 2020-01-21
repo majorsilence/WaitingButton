@@ -15,13 +15,15 @@ namespace Majorsilence.Winforms.WaitingButton.Test
         public Form1()
         {
             InitializeComponent();
+
+            buttonThreeDots5.ResizeLabels(23, 20);
+            buttonThreeDots5.ResizeCharacters(2.3f);
         }
 
         private async void buttonThreeDots1_Click(object sender, EventArgs e)
         {
             buttonThreeDots1.DarkColor = Color.DarkBlue;
             buttonThreeDots1.LightColor = Color.Cyan;
-
 
             await Task.Run(() =>
             {
@@ -31,6 +33,8 @@ namespace Majorsilence.Winforms.WaitingButton.Test
                     buttonThreeDots1.Reset();
                 });
             });
+
+            listBox1.Items.Add("buttonThreeDots1_Click finished");
         }
 
         private async void buttonThreeDots2_Click(object sender, EventArgs e)
@@ -40,28 +44,47 @@ namespace Majorsilence.Winforms.WaitingButton.Test
 
             await Task.Run(() =>
             {
-                System.Threading.Thread.Sleep(5000);
+                System.Threading.Thread.Sleep(10000);
                 this.Invoke((MethodInvoker)delegate
                 {
                     buttonThreeDots2.Reset();
                 });
             });
+
+            listBox1.Items.Add("buttonThreeDots2_Click finished");
         }
 
         private async void buttonThreeDots3_Click(object sender, EventArgs e)
         {
-            buttonThreeDots3.DisplayCharacter = "👀";
+            buttonThreeDots3.DisplayCharacter = "ಠ_ಠ";
             buttonThreeDots3.LightColor = Color.Cyan;
+            listBox1.Items.Add("buttonThreeDots3_Click is clicked");
 
+            await Task.Run(() =>
+            {
+                System.Threading.Thread.Sleep(15000);
+                this.Invoke((MethodInvoker)delegate
+                {
+                    buttonThreeDots3.Reset();
+                });
+            });
+            listBox1.Items.Add("buttonThreeDots3_Click finished");
+        }
+
+        private async void buttonThreeDots5_Click(object sender, EventArgs e)
+        {
+            buttonThreeDots5.DisplayCharacter = "ಠ_ಠ";
+            listBox1.Items.Add("buttonThreeDots5_Click is clicked");
 
             await Task.Run(() =>
             {
                 System.Threading.Thread.Sleep(5000);
                 this.Invoke((MethodInvoker)delegate
                 {
-                    buttonThreeDots3.Reset();
+                    buttonThreeDots5.Reset();
                 });
             });
+            listBox1.Items.Add("buttonThreeDots5_Click finished");
         }
     }
 }
