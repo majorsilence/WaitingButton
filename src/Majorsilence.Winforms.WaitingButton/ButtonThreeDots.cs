@@ -54,6 +54,7 @@ namespace Majorsilence.Winforms.WaitingButton
 
         public Color LightColor { get; set; } = Color.Gray;
         public Color DarkColor { get; set; } = Color.Black;
+        public bool DisableButtonOnClick { get; set; } = true;
 
         private string _displayChar = "⬤";
         public string DisplayCharacter
@@ -74,8 +75,17 @@ namespace Majorsilence.Winforms.WaitingButton
         private string origText = "";
         private uint count = 0;
 
+        private bool isclicked = false;
         protected override void OnClick(EventArgs e)
         {
+            if (DisableButtonOnClick)
+            {
+                if (isclicked)
+                {
+                    return;
+                }
+            }
+            isclicked = true;
             base.OnClick(e);
             origText = this.Text;
             this.Text = "";
@@ -127,12 +137,17 @@ namespace Majorsilence.Winforms.WaitingButton
             this.Controls.Remove(layout);
             this.Text = origText;
             origText = "";
+            isclicked = false;
         }
 
         public new void Dispose()
         {
-            base.Dispose();
+            this.label1?.Dispose();
+            this.label2?.Dispose();
+            this.label3?.Dispose();
+            this.layout?.Dispose();
             this?.timer.Dispose();
+            base.Dispose();           
         }
     }
 }
