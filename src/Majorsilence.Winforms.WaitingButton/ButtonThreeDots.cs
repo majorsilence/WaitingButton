@@ -26,35 +26,55 @@ namespace Majorsilence.Winforms.WaitingButton
             {
                 Text = _displayChar,
                 Size = new Size(20, 20),
-                ForeColor = Color.Gray
+                ForeColor = Color.Gray,
             };
 
             label2 = new Label()
             {
                 Text = _displayChar,
                 Size = new Size(20, 20),
-                ForeColor = Color.Gray
+                ForeColor = Color.Gray,
             };
             label3 = new Label()
             {
                 Text = _displayChar,
                 Size = new Size(20, 20),
-                ForeColor = Color.Gray
+                ForeColor = Color.Gray,
             };
             layout = new Panel()
             {
                 BackColor = Color.Transparent
             };
+
             layout.Controls.Add(label1);
             layout.Controls.Add(label2);
             layout.Controls.Add(label3);
             timer = new System.Windows.Forms.Timer();
             timer.Tick += timer_Tick;
+
         }
 
         public Color LightColor { get; set; } = Color.Gray;
         public Color DarkColor { get; set; } = Color.Black;
         public bool DisableButtonOnClick { get; set; } = true;
+
+
+        public void ResizeLabels(int width = 20, int height = 20)
+        {
+            this.label1.Size = new Size(width, height);
+            this.label2.Size = new Size(width, height);
+            this.label3.Size = new Size(width, height);
+        }
+
+        public void ResizeCharacters(float percent)
+        {
+            this.label1.Size = new Size((int)(this.label1.Width * percent), (int)(this.label1.Height * percent));
+            this.label2.Size = new Size((int)(this.label2.Width * percent), (int)(this.label2.Height * percent));
+            this.label3.Size = new Size((int)(this.label3.Width * percent), (int)(this.label3.Height * percent));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", this.label1.Font.SizeInPoints * percent, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", this.label2.Font.SizeInPoints * percent, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", this.label3.Font.SizeInPoints * percent, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
 
         private string _displayChar = "⬤";
         public string DisplayCharacter
@@ -147,7 +167,7 @@ namespace Majorsilence.Winforms.WaitingButton
             this.label3?.Dispose();
             this.layout?.Dispose();
             this?.timer.Dispose();
-            base.Dispose();           
+            base.Dispose();
         }
     }
 }
