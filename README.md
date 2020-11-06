@@ -5,6 +5,11 @@ Winform button that shows three dots on click.
 Lightweight, quick and dirty animated c# winform waiting button.  For advanced functionality look into using something like [telerik waiting bar](https://docs.telerik.com/devtools/winforms/controls/track-and-status-controls/waitingbar/waiting-styles).
 
 
+# Nuget package
+
+https://www.nuget.org/packages/Majorsilence.Winforms.WaitingButton/
+
+
 # Example
 
 ![Animated waiting button gif](waiting-button.gif)
