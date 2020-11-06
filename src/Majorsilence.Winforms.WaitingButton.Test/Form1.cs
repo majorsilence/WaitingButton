@@ -24,10 +24,11 @@ namespace Majorsilence.Winforms.WaitingButton.Test
         {
             buttonThreeDots1.DarkColor = Color.DarkBlue;
             buttonThreeDots1.LightColor = Color.Cyan;
+            listBox1.Items.Add("buttonThreeDots1_Click is clicked");
 
-            await Task.Run(() =>
+            await Task.Run(async () =>
             {
-                System.Threading.Thread.Sleep(5000);
+                await Task.Delay(5000);
                 this.Invoke((MethodInvoker)delegate
                 {
                     buttonThreeDots1.Reset();
@@ -40,11 +41,11 @@ namespace Majorsilence.Winforms.WaitingButton.Test
         private async void buttonThreeDots2_Click(object sender, EventArgs e)
         {
             buttonThreeDots2.DisplayCharacter = "😜";
+            listBox1.Items.Add("buttonThreeDots2_Click is clicked");
 
-
-            await Task.Run(() =>
+            await Task.Run(async () =>
             {
-                System.Threading.Thread.Sleep(10000);
+                await Task.Delay(10000);
                 this.Invoke((MethodInvoker)delegate
                 {
                     buttonThreeDots2.Reset();
@@ -60,9 +61,9 @@ namespace Majorsilence.Winforms.WaitingButton.Test
             buttonThreeDots3.LightColor = Color.Cyan;
             listBox1.Items.Add("buttonThreeDots3_Click is clicked");
 
-            await Task.Run(() =>
+            await Task.Run(async () =>
             {
-                System.Threading.Thread.Sleep(15000);
+                await Task.Delay(15000);
                 this.Invoke((MethodInvoker)delegate
                 {
                     buttonThreeDots3.Reset();
@@ -76,9 +77,9 @@ namespace Majorsilence.Winforms.WaitingButton.Test
             buttonThreeDots5.DisplayCharacter = "ಠ_ಠ";
             listBox1.Items.Add("buttonThreeDots5_Click is clicked");
 
-            await Task.Run(() =>
+            await Task.Run(async () =>
             {
-                System.Threading.Thread.Sleep(5000);
+                await Task.Delay(5000);
                 this.Invoke((MethodInvoker)delegate
                 {
                     buttonThreeDots5.Reset();
