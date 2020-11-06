@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>Majorsilence.Winforms.WaitingButton</id>
+    <version>1.0.0.0</version>
+    <title>MajorSilence Winform Waiting Buttons</title>
+    <authors>Peter Gill</authors>
+    <owners>Peter Gill</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <projectUrl>http://project_url_here_or_delete_this_line/</projectUrl>
+    <iconUrl>http://icon_url_here_or_delete_this_line/</iconUrl>
+    <description>A animated button for long for long running background tasks.</description>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <copyright>Copyright 2020</copyright>
+    <tags>Winforms Button</tags>
+  </metadata>
+</package>
