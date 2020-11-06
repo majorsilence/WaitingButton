@@ -17,6 +17,10 @@ https://www.nuget.org/packages/Majorsilence.Winforms.WaitingButton/
 
 # Code Example
 
+
+Must be triggered from an Async method.
+
+
 ```cs
 using System.Windows.Forms;
 using Majorsilence.Winforms.WaitingButton;
