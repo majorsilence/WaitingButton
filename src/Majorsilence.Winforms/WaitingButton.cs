@@ -1,27 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Majorsilence.Winforms.WaitingButton
+namespace Majorsilence.Winforms
 {
-    [Description("Button that shows an animation after having been clicked.")]
-    public class ButtonThreeDots : Button
+    internal class WaitingButton
     {
-
         private Label label1;
         private Label label2;
         private Label label3;
         private Panel layout;
         System.Windows.Forms.Timer timer;
+        readonly Button button;
 
-
-        public ButtonThreeDots()
+        public WaitingButton(Button button)
         {
+            this.button = button;
             label1 = new Label()
             {
                 Text = _displayChar,
@@ -96,7 +94,7 @@ namespace Majorsilence.Winforms.WaitingButton
         private uint count = 0;
 
         private bool isclicked = false;
-        protected override void OnClick(EventArgs e)
+        public void OnClick()
         {
             if (DisableButtonOnClick)
             {
@@ -106,9 +104,9 @@ namespace Majorsilence.Winforms.WaitingButton
                 }
             }
             isclicked = true;
-            base.OnClick(e);
-            origText = this.Text;
-            this.Text = "";
+
+            origText = this.button.Text;
+            this.button.Text = "";
             timer.Enabled = true;
 
             layout.Width = this.label1.Width + this.label2.Width + this.label3.Width;
@@ -118,15 +116,15 @@ namespace Majorsilence.Winforms.WaitingButton
             this.label2.Location = new Point(label1.Width, layout.Height / 3);
             this.label3.Location = new Point(label1.Width * 2, layout.Height / 3);
 
-            layout.Top = (this.Height - layout.Height) / 2;
-            layout.Left = (this.Width - layout.Width) / 2;
+            layout.Top = (this.button.Height - layout.Height) / 2;
+            layout.Left = (this.button.Width - layout.Width) / 2;
 
-            this.Controls.Add(layout);
+            this.button.Controls.Add(layout);
         }
 
         void timer_Tick(object sender, EventArgs e)
         {
-            Invalidate();
+            button.Invalidate();
             count += 1;
 
             if (count % 12 == 0)
@@ -154,20 +152,19 @@ namespace Majorsilence.Winforms.WaitingButton
         public void Reset()
         {
             timer.Enabled = false;
-            this.Controls.Remove(layout);
-            this.Text = origText;
+            this.button.Controls.Remove(layout);
+            this.button.Text = origText;
             origText = "";
             isclicked = false;
         }
 
-        public new void Dispose()
+        public void Dispose()
         {
             this.label1?.Dispose();
             this.label2?.Dispose();
             this.label3?.Dispose();
             this.layout?.Dispose();
             this?.timer.Dispose();
-            base.Dispose();
         }
     }
 }
